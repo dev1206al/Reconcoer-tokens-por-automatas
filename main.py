@@ -25,26 +25,26 @@ def configurar_afn():
     afn.agregar_estado("q2", es_aceptacion=True)  # Estado final para "if"
 
     # "int"
-    afn.agregar_estado("q3")
-    afn.agregar_estado("q4", es_aceptacion=True)  # Estado final para "int"
+    afn.agregar_estado("q3")# Estado final para "int"
+    afn.agregar_estado("q4", es_aceptacion=True)  
     afn.agregar_estado("q5")
 
     # "else"
     afn.agregar_estado("q6")
     afn.agregar_estado("q7")
-    afn.agregar_estado("q8")
-    afn.agregar_estado("q9", es_aceptacion=True)  # Estado final para "else"
+    afn.agregar_estado("q8", es_aceptacion=True)
+    afn.agregar_estado("q9")  # Estado final para "else"
 
     # "while"
     afn.agregar_estado("q10")
     afn.agregar_estado("q11")
     afn.agregar_estado("q12")
-    afn.agregar_estado("q13")
-    afn.agregar_estado("q14", es_aceptacion=True)  # Estado final para "while"
+    afn.agregar_estado("q13", es_aceptacion=True)
+    afn.agregar_estado("q14")  # Estado final para "while"
 
     # Operadores: "i", "i+", "i++"
-    afn.agregar_estado("q15")  # Estado final para "i+"
-    afn.agregar_estado("q16", es_aceptacion=True)  # Estado final para "i++"
+    afn.agregar_estado("q15", es_aceptacion=True)  # Estado final para "i+"
+  
   
 
     # ====================
@@ -56,22 +56,21 @@ def configurar_afn():
     afn.agregar_transicion("q1", "q2", 'f')  # "if"
     afn.agregar_transicion("q1", "q3", 'n')  # "int"
     afn.agregar_transicion("q3", "q4", 't')
-    afn.agregar_transicion("q4", "q5", '')
 
-    afn.agregar_transicion("q0", "q6", 'e')  # "else"
-    afn.agregar_transicion("q6", "q7", 'l')
-    afn.agregar_transicion("q7", "q8", 's')
-    afn.agregar_transicion("q8", "q9", 'e')
+    afn.agregar_transicion("q0", "q5", 'e')  # "else"
+    afn.agregar_transicion("q5", "q6", 'l')
+    afn.agregar_transicion("q6", "q7", 's')
+    afn.agregar_transicion("q7", "q8", 'e')
 
-    afn.agregar_transicion("q0", "q10", 'w')  # "while"
-    afn.agregar_transicion("q10", "q11", 'h')
-    afn.agregar_transicion("q11", "q12", 'i')
-    afn.agregar_transicion("q12", "q13", 'l')
-    afn.agregar_transicion("q13", "q14", 'e')
+    afn.agregar_transicion("q0", "q9", 'w')  # "while"
+    afn.agregar_transicion("q9", "q10", 'h')
+    afn.agregar_transicion("q10", "q11", 'i')
+    afn.agregar_transicion("q11", "q12", 'l')
+    afn.agregar_transicion("q12", "q13", 'e')
 
     # Transiciones para operadores
-    afn.agregar_transicion("q1", "q15", '+')  # "i+"
-    afn.agregar_transicion("q15", "q16", '+')  # "i++"
+    afn.agregar_transicion("q1", "q14", '+')  # "i+"
+    afn.agregar_transicion("q14", "q15", '+')  # "i++"
 
     return afn
 
@@ -85,7 +84,7 @@ if __name__ == "__main__":
     print(afn) # Imprimimos la configuracion del AFN (estados y transiciones)
 
     # Pruebas
-    cadenas = ["if", "int", "else", "while","def", "elif", "intt", " ", "i", "i+", "i++"]
+    cadenas = ["if", "int", "else", "while","def", "elif", "intt", " ", "i", "i+", "i++", "if", "i+++"]
     print("\n=== Resultados de las pruebas ===")
     for cadena in cadenas:
         aceptado, palabra = afn.simular(cadena) #Simular la cadena en el AFN
